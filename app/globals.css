@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Mode: Zinc-50 base */
+    --background: 240 5% 96%;  /* zinc-50 #FAFAFA */
+    --foreground: 240 10% 3.9%; /* zinc-950 #09090b */
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+ 
+    /* Primary: Blue-600 */
+    --primary: 221.2 83.2% 53.3%; /* blue-600 #2563EB */
+    --primary-foreground: 210 40% 98%;
+ 
+    /* Secondary: Zinc-100 */
+    --secondary: 240 4.8% 95.9%; /* zinc-100 #F4F4F5 */
+    --secondary-foreground: 240 5.9% 10%;
+ 
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%; /* zinc-500 */
+ 
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5.9% 90%; /* zinc-200 */
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+ 
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    /* Dark Mode: Zinc-950 base */
+    --background: 240 10% 3.9%; /* zinc-950 #09090B */
+    --foreground: 0 0% 98%; /* zinc-50 #FAFAFA */
+ 
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+ 
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+ 
+    /* Primary: Blue-500 (lighter for dark mode) */
+    --primary: 217.2 91.2% 59.8%; /* blue-500 #3B82F6 */
+    --primary-foreground: 222.2 47.4% 11.2%;
+ 
+    --secondary: 240 3.7% 15.9%; /* zinc-800 #27272A */
+    --secondary-foreground: 0 0% 98%;
+ 
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%; /* zinc-400 */
+ 
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+ 
+    --border: 240 3.7% 15.9%; /* zinc-800 */
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-secondary hover:bg-muted-foreground/30 rounded-full transition-colors;
+}
