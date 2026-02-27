@@ -144,8 +144,7 @@ export const DATA = {
     {
       title: "India AI Impact Buildathon",
       issuer: "Top 2% National Finalist",
-      description: "Recognized among top 2% from over 40,000+ participants across India for leveraging AI by HCL GUVI.",
-      image: "/certificates/india-ai-impact.png"
+      description: "Recognized among top 2% from over 40,000+ participants across India for leveraging AI by HCL GUVI."
     },
     {
       title: "AI-NIRMAN Hackathon",
