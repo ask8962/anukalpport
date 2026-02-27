@@ -87,7 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   }
 
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${bebas.variable} antialiased`}>
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${bebas.variable} antialiased dark`}>
       <head>
         <script
           type="application/ld+json"

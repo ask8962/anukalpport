@@ -1,7 +1,8 @@
-
 import { Github, Linkedin, Mail, FileText, Code, Database, Server, Smartphone, Globe } from "lucide-react";
 
 export const DATA = {
+  name: "Anukalp Gupta",
+  initials: "AG",
   personalInfo: {
     name: "Anukalp Gupta",
     role: "Backend Engineer",
@@ -12,7 +13,7 @@ export const DATA = {
     linkedin: "https://linkedin.com/in/anukalp-gupta",
     github: "https://github.com/ask8962",
     leetcode: "https://leetcode.com/u/anukalpgupta",
-    resumeUrl: "/anukalp-gupta-resume.pdf",
+    resumeUrl: "/anukalpcv.pdf",
   },
 
   about: {
@@ -53,6 +54,30 @@ export const DATA = {
 
   projects: [
     {
+      title: "JusticeAI",
+      description: "Intelligent, multi-modal Consumer Scam Helpdesk designed to democratize legal access for online shoppers.",
+      dates: "Feb 2026",
+      tech: ["Next.js", "Twilio", "Upstash", "Sarvam AI", "Firebase"],
+      link: "https://justiceaig.vercel.app/",
+      metrics: [
+        "Built a robust Developer API Platform with SHA-256 hashed API keys and a tiered quota system.",
+        "Deployed an India-Scale WhatsApp bot via Twilio with voice-note and vernacular language support.",
+        "Solved serverless timeout limitations (10s) using Upstash QStash for background queuing of LLM generation."
+      ]
+    },
+    {
+      title: "AI Code Explainer",
+      description: "Intelligent coding companion that instantly analyzes, explains, and optimizes code.",
+      dates: "Feb 2026",
+      tech: ["Next.js 14", "Groq (LLaMA 3.3)", "Three.js", "Tailwind CSS"],
+      link: "https://gla-code-aa.vercel.app/",
+      metrics: [
+        "Provides instant explanations with a step-by-step logic breakdown for Python, Java, C++, and more.",
+        "Performs real-time Big-O complexity analysis for Time and Space.",
+        "Offers auto-optimization with one-click refactoring and tailored learning modes."
+      ]
+    },
+    {
       title: "Indian College OS",
       description: "Comprehensive Student Management Platform built with robust backend architecture.",
       dates: "Jan 2025",
@@ -74,39 +99,119 @@ export const DATA = {
       metrics: [
         "Architected backend to handle 500+ users with role-based access control.",
         "Developed 12 RESTful APIs for exam scheduling and automated grade calculations.",
-        "Implemented MongoDB aggregation pipelines for complex data processing.",
-        "Resolved critical CORS and HttpOnly cookie authentication issues."
+        "Implemented MongoDB aggregation pipelines for complex data processing."
+      ]
+    },
+    {
+      title: "MoodifyMe",
+      description: "Emotion-Based Daily Planner with AI-curated task recommendations and emotional wellness tracking.",
+      dates: "Feb 2026",
+      tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Firebase"],
+      link: "https://moodfindai.vercel.app/",
+      metrics: [
+        "Implemented an emotion-aware task management system capturing mood data via an emoji-based interface.",
+        "Generates AI-powered personalized daily task suggestions based on emotional state and tracks trends visually.",
+        "Secured email and Google OAuth authentication with real-time data sync using Firebase Firestore."
       ]
     },
     {
       title: "GLA Gallery",
-      description: "Real-time Campus Event Platform.",
-      dates: "Nov 2024",
-      tech: ["Next.js", "Firebase", "TypeScript", "Real-time"],
-      link: "https://glagallery.vercel.app",
+      description: "Campus Memories & Event Management Platform for photo sharing, hackathons, and rewards.",
+      dates: "Jan 2026",
+      tech: ["Next.js 16", "TypeScript 5", "Firebase", "Upstash Redis", "Tailwind CSS"],
+      link: "https://glagallery.vercel.app/",
       metrics: [
-        "Currently serving 100+ students for campus event updates.",
-        "Implemented real-time data synchronization using Firestore listeners.",
-        "Secured database with custom Firestore security rules to prevent unauthorized access."
+        "Built a comprehensive social platform with 24-hour stories, photo uploads, and a gamified points system.",
+        "Developed a robust event hub supporting RSVP, QR ticketing, hackathon judging, and digital club management.",
+        "Ensured security with @gla.ac.in email-only access, Upstash rate limiting, and 2FA protection."
+      ]
+    },
+    {
+      title: "FoodExpress",
+      description: "Comprehensive food delivery web application built for tier 2/3 cities with real-time order tracking.",
+      dates: "Dec 2025",
+      tech: ["Next.js 14", "React", "Firebase", "Tailwind CSS", "TypeScript"],
+      link: "https://foodexp.vercel.app/",
+      metrics: [
+        "Architected a complex multi-role system supporting Customers, Shopkeepers, Delivery Partners, and Admins.",
+        "Implemented real-time live order tracking via Firebase listeners and integrated offline support with IndexedDB.",
+        "Developed complete restaurant management features including menu CRUD, image uploads, and revenue analytics."
       ]
     }
   ],
 
   certifications: [
     {
-      title: "Hack-a-Pirate, Oblivion'25",
-      issuer: "Top 5 Finalist (National Level)",
-      description: "Built real-time system in 24-hour hackathon."
+      title: "India AI Impact Buildathon",
+      issuer: "Top 2% National Finalist",
+      description: "Recognized among top 2% from over 40,000+ participants across India for leveraging AI by HCL GUVI.",
+      image: "/certificates/india-ai-impact.png"
     },
     {
-      title: "Buildathon 2025",
-      issuer: "Finalist (Innovation Challenge)",
-      description: "Presented scalable architecture for EdTech solution."
+      title: "AI-NIRMAN Hackathon",
+      issuer: "Participant/Builder",
+      description: "Built JusticeAI, an intelligent scam helpdesk, leveraging Next.js, Twilio, and Sarvam AI.",
+      image: "/certificates/ai-nirman.png"
     },
     {
-      title: "Entrepreneurship Hackathon",
+      title: "Face the Future: Deepfake ML",
       issuer: "Participant",
-      description: "STPI x Techniche, IIT Guwahati."
+      description: "Synergy '25 organised by International Institute of Information Technology (IIIT), Bangalore.",
+      image: "/certificates/face-the-future.png"
+    },
+    {
+      title: "Hack-a-Pirate, Oblivion'25",
+      issuer: "Participant",
+      description: "Organised by Netaji Subhas University of Technology (NSUT), Delhi.",
+      image: "/certificates/hack-a-pirate.png"
+    },
+    {
+      title: "Shri Ram Trading Challenge",
+      issuer: "Participant",
+      description: "Organised by Shri Ram College of Commerce (SRCC), University of Delhi (DU), Delhi.",
+      image: "/certificates/srcc-trading.png"
+    },
+    {
+      title: "Buildathon, BVIMR New Delhi",
+      issuer: "Top 46",
+      description: "Secured a position in the Top 46 at Buildathon conducted by BVIMR, New Delhi.",
+      image: "/certificates/buildathon-bvimr.png"
+    },
+    {
+      title: "Ctrl+Space",
+      issuer: "Participant",
+      description: "Powered by Quantique Metadata, organised by Newton School of Technology, ADYPU Pune.",
+      image: "/certificates/ctrl-space.png"
+    },
+    {
+      title: "NPTEL Online Certification (Elite)",
+      issuer: "IIT Kharagpur",
+      description: "Introduction to Environmental Engineering and Science - Fundamental and Sustainability Concepts (Score: 62%).",
+      image: "/certificates/nptel-environmental.jpeg"
+    },
+    {
+      title: "Web Development Intern",
+      issuer: "Micro IT Services",
+      description: "Successfully completed 1-Month Internship Program as Web Development Intern.",
+      image: "/certificates/micro-it-internship.jpeg"
+    },
+    {
+      title: "Loyal Legend of the Neural Realm",
+      issuer: "ChatGPT",
+      description: "Displayed unmatched dedication by messaging ChatGPT 15 times during downtime.",
+      image: "/certificates/chatgpt-loyalty.png"
+    },
+    {
+      title: "Software Engineer",
+      issuer: "Edumagma",
+      description: "Certificate of achievement for making magic at Edumagma.",
+      image: "/certificates/edumagma-swe.png"
+    },
+    {
+      title: "Empowering Education Through Technology",
+      issuer: "Kavya Gupta",
+      description: "Certificate of achievement for empowering education through technology.",
+      image: "/certificates/empowering-education.png"
     }
   ]
 };

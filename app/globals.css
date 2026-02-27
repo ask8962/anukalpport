@@ -3,94 +3,87 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    /* Light Mode: Zinc-50 base */
-    --background: 240 5% 96%;  /* zinc-50 #FAFAFA */
-    --foreground: 240 10% 3.9%; /* zinc-950 #09090b */
 
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
- 
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
- 
-    /* Primary: Blue-600 */
-    --primary: 221.2 83.2% 53.3%; /* blue-600 #2563EB */
-    --primary-foreground: 210 40% 98%;
- 
-    /* Secondary: Zinc-100 */
-    --secondary: 240 4.8% 95.9%; /* zinc-100 #F4F4F5 */
-    --secondary-foreground: 240 5.9% 10%;
- 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%; /* zinc-500 */
- 
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
- 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 5.9% 90%; /* zinc-200 */
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
- 
-    --radius: 0.5rem;
-  }
- 
+  :root,
   .dark {
-    /* Dark Mode: Zinc-950 base */
-    --background: 240 10% 3.9%; /* zinc-950 #09090B */
-    --foreground: 0 0% 98%; /* zinc-50 #FAFAFA */
- 
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
- 
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
- 
-    /* Primary: Blue-500 (lighter for dark mode) */
-    --primary: 217.2 91.2% 59.8%; /* blue-500 #3B82F6 */
-    --primary-foreground: 222.2 47.4% 11.2%;
- 
-    --secondary: 240 3.7% 15.9%; /* zinc-800 #27272A */
-    --secondary-foreground: 0 0% 98%;
- 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%; /* zinc-400 */
- 
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
- 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
- 
-    --border: 240 3.7% 15.9%; /* zinc-800 */
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 213 31% 91%;
+
+    --primary: 266 100% 64%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 222 47% 11%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+
+    --accent: 216 100% 50%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+    --ring: 266 100% 64%;
+
+    --radius: 0.75rem;
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
   }
+
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply tracking-tight;
   }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   @apply bg-background;
 }
+
 ::-webkit-scrollbar-thumb {
-  @apply bg-secondary hover:bg-muted-foreground/30 rounded-full transition-colors;
+  @apply bg-secondary-foreground/20 hover:bg-secondary-foreground/40 rounded-full transition-colors;
+}
+
+/* Core Utilities */
+.glass {
+  @apply bg-background/40 backdrop-blur-xl border border-white/10;
+}
+
+.glass-panel {
+  @apply bg-secondary/30 backdrop-blur-md border border-white/5;
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-blue-400;
+}
+
+.bg-grid-white {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm20 20h20v20H20V20zM0 20h20v20H0V20z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
