@@ -53,19 +53,30 @@ export function Hero() {
                     className="flex flex-col items-center"
                 >
                     <motion.div variants={itemVariants}>
-                        <Badge variant="outline" className="mb-8 px-4 py-2 text-sm font-medium rounded-full glass border-primary/30 text-primary shadow-[0_0_15px_rgba(139,92,246,0.15)] flex items-center">
-                            <span className="relative flex h-2 w-2 mr-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                        <Badge variant="outline" className="mb-12 px-5 py-2.5 text-xs tracking-widest uppercase font-bold rounded-full border-white/20 text-white/70 shadow-2xl flex items-center backdrop-blur-md bg-white/[0.02]">
+                            <span className="relative flex h-2 w-2 mr-3">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                             </span>
-                            Available for Internships & Freelance
+                            Accepting New Opportunities
                         </Badge>
                     </motion.div>
 
-                    <motion.h1 variants={itemVariants} className="text-6xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter mb-4 leading-none relative z-10">
-                        <span className="text-foreground">{DATA.personalInfo.name.split(' ')[0]}</span>
-                        <br className="md:hidden" />
-                        <span className="text-gradient ml-0 md:ml-4">{DATA.personalInfo.name.split(' ').slice(1).join(' ')}</span>
+                    <motion.h1 variants={itemVariants} className="text-7xl md:text-[10rem] lg:text-[13rem] font-black tracking-tighter mb-2 leading-[0.85] relative z-10 uppercase">
+                        <motion.span
+                            className="block text-transparent bg-clip-text bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')] bg-cover"
+                            animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                            transition={{ duration: 20, ease: "linear", repeat: Infinity }}
+                        >
+                            {DATA.personalInfo.name.split(' ')[0]}
+                        </motion.span>
+                        <motion.span
+                            className="block text-transparent bg-clip-text bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')] bg-cover ml-0 md:ml-32"
+                            animate={{ backgroundPosition: ["100% 50%", "0% 50%", "100% 50%"] }}
+                            transition={{ duration: 20, ease: "linear", repeat: Infinity }}
+                        >
+                            {DATA.personalInfo.name.split(' ').slice(1).join(' ')}
+                        </motion.span>
                     </motion.h1>
 
                     <motion.h2 variants={itemVariants} className="text-2xl md:text-3xl lg:text-4xl font-light text-foreground/80 mb-8 font-mono tracking-tight relative z-10">

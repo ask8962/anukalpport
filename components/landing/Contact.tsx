@@ -27,47 +27,68 @@ export function Contact() {
 
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/20 blur-[150px] rounded-full pointer-events-none z-0" />
 
-            <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95, y: 30 }}
-                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none z-0 overflow-hidden mix-blend-overlay opacity-10">
+                <h2 className="text-[15vw] font-black tracking-tighter text-white whitespace-nowrap">
+                    LET&apos;S TALK
+                </h2>
+            </div>
+
+            <div className="max-w-5xl mx-auto px-6 text-center relative z-10 flex flex-col items-center justify-center h-full">
+
+                <div className="w-24 h-24 bg-white/5 backdrop-blur-3xl rounded-full flex items-center justify-center mb-12 shadow-[0_0_50px_rgba(255,255,255,0.05)] border border-white/10 relative group">
+                    <div className="absolute inset-0 rounded-full border border-primary/50 animate-ping opacity-20 group-hover:opacity-100 transition-opacity"></div>
+                    <Send className="text-white h-10 w-10 ml-1 group-hover:rotate-12 transition-transform duration-500 group-hover:text-primary" />
+                </div>
+
+                <motion.h3
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="glass-panel border-white/10 rounded-3xl p-10 md:p-16 relative overflow-hidden group"
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="text-5xl md:text-8xl font-black mb-8 tracking-tighter text-foreground drop-shadow-sm uppercase leading-[0.85]"
                 >
-                    <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                    Build Something<br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-blue-500">Amazing.</span>
+                </motion.h3>
 
-                    <div className="w-16 h-16 mx-auto bg-primary/20 rounded-2xl flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(139,92,246,0.5)] rotate-3 group-hover:rotate-12 transition-transform duration-500">
-                        <Send className="text-primary h-8 w-8" />
-                    </div>
+                <motion.p
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="text-xl md:text-2xl text-muted-foreground mb-16 max-w-2xl mx-auto font-light leading-relaxed mix-blend-screen"
+                >
+                    I am actively looking for internship and full-time opportunities.
+                    If you need an engineer who understands scale and pixel-perfect design, my inbox is open.
+                </motion.p>
 
-                    <h3 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-foreground drop-shadow-sm">Let's build something <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">amazing.</span></h3>
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    className="flex flex-col sm:flex-row justify-center gap-6 relative z-20 w-full sm:w-auto"
+                >
+                    <a href={`mailto:${DATA.personalInfo.email}`} className="group/btn relative">
+                        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-primary/20 blur-xl group-hover/btn:bg-primary/40 transition-colors"></div>
+                        <Button size="lg" className="relative w-full sm:w-auto h-16 px-10 text-xl font-bold rounded-full bg-white text-black hover:bg-gray-200 hover:scale-105 transition-all duration-500 flex items-center gap-3">
+                            <Mail className="h-6 w-6" />
+                            Say Hello
+                        </Button>
+                    </a>
 
-                    <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto font-light leading-relaxed">
-                        I am actively looking for internship and full-time opportunities.
-                        If you are looking for a backend engineer who understands scale and performance, my inbox is always open.
-                    </p>
-
-                    <div className="flex flex-col sm:flex-row justify-center gap-6 relative z-20">
-                        <a href={`mailto:${DATA.personalInfo.email}`}>
-                            <Button size="lg" className="w-full sm:w-auto h-14 px-8 text-lg rounded-full bg-primary hover:bg-primary/90 hover:shadow-[0_0_20px_rgba(139,92,246,0.6)] hover:-translate-y-1 transition-all duration-300">
-                                <Mail className="mr-3 h-5 w-5" />
-                                Say Hello
-                            </Button>
-                        </a>
-                        <a href={DATA.personalInfo.linkedin} target="_blank" rel="noreferrer">
-                            <Button variant="outline" size="lg" className="w-full sm:w-auto h-14 px-8 text-lg rounded-full border-white/20 bg-white/5 hover:bg-white/10 hover:text-foreground hover:-translate-y-1 transition-all duration-300">
-                                <Linkedin className="mr-3 h-5 w-5" />
-                                Let's Connect
-                            </Button>
-                        </a>
-                    </div>
+                    <a href={DATA.personalInfo.linkedin} target="_blank" rel="noreferrer">
+                        <Button variant="outline" size="lg" className="w-full sm:w-auto h-16 px-10 text-xl font-bold rounded-full border-white/20 bg-black/50 backdrop-blur-max hover:bg-white/10 hover:text-white hover:border-white/40 hover:-translate-y-1 transition-all duration-500 flex items-center gap-3">
+                            <Linkedin className="h-6 w-6" />
+                            LinkedIn
+                        </Button>
+                    </a>
                 </motion.div>
             </div>
 
             {/* Footer Text */}
-            <div className="absolute bottom-6 w-full text-center text-sm text-muted-foreground/60">
-                <p>Designed and Built by {DATA.name}.</p>
+            <div className="absolute bottom-8 w-full text-center text-sm font-mono tracking-widest text-muted-foreground/40 uppercase">
+                <p>Designed and Built by {DATA.personalInfo.name}</p>
             </div>
         </section>
     );

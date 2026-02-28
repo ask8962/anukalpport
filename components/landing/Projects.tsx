@@ -36,6 +36,20 @@ export function Projects() {
         return projectCategories.includes(activeCategory);
     });
 
+    const getBentoClass = (index: number) => {
+        // Create an organic, asymmetric grid layout out of 3 columns
+        switch (index % 7) {
+            case 0: return "md:col-span-2 md:row-span-2 min-h-[400px]"; // Massive Feature
+            case 1: return "md:col-span-1 md:row-span-1 min-h-[250px]"; // Regular block next to feature
+            case 2: return "md:col-span-1 md:row-span-1 min-h-[250px]"; // Regular block next to feature
+            case 3: return "md:col-span-2 md:row-span-1 min-h-[300px]"; // Wide horizontal block
+            case 4: return "md:col-span-1 md:row-span-2 min-h-[400px]"; // Tall vertical tower
+            case 5: return "md:col-span-1 md:row-span-1 min-h-[250px]"; // Fill block
+            case 6: return "md:col-span-1 md:row-span-1 min-h-[250px]"; // Fill block
+            default: return "md:col-span-1 md:row-span-1";
+        }
+    };
+
     return (
         <section id="projects" className="py-32 bg-background relative min-h-screen">
             {/* Subtle Grid Background */}
@@ -79,10 +93,10 @@ export function Projects() {
                         </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[200px] md:auto-rows-[minmax(0,_1fr)]">
 
                         <AnimatePresence mode="popLayout">
-                            {filteredProjects.map((project) => (
+                            {filteredProjects.map((project, index) => (
                                 <motion.div
                                     key={project.title}
                                     layout
@@ -90,47 +104,47 @@ export function Projects() {
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, scale: 0.95 }}
                                     transition={{ duration: 0.4 }}
-                                    className="h-full"
+                                    className={cn("h-full w-full", getBentoClass(index))}
                                 >
-                                    <CardContainer className="h-full w-full" containerClassName="py-0 flex items-stretch h-full">
-                                        <CardBody className="w-full h-full flex">
-                                            <CardItem translateZ="20" className="flex flex-col h-full w-full glass-panel group relative overflow-hidden transition-all duration-500 hover:shadow-[0_10px_40px_rgba(139,92,246,0.2)] hover:border-primary/40 border-white/10 rounded-2xl">
-                                                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0 pointer-events-none"></div>
+                                    <CardContainer className="h-full w-full" containerClassName="py-0 flex items-stretch h-full w-full">
+                                        <CardBody className="w-full h-full flex group/bento">
+                                            <CardItem translateZ="20" className="flex flex-col h-full w-full glass-panel relative overflow-hidden transition-all duration-700 hover:shadow-[0_10px_60px_rgba(139,92,246,0.3)] hover:border-primary/50 border-white/5 rounded-3xl bg-black/40">
+
+                                                {/* Liquid Hover Reveal background */}
+                                                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-primary/5 to-transparent opacity-0 group-hover/bento:opacity-100 transition-opacity duration-700 z-0 pointer-events-none mix-blend-screen mask-radial-gradient"></div>
+
                                                 <CardHeader className="pb-4 relative z-10 flex-shrink-0">
                                                     <div className="flex justify-between items-start">
                                                         <CardItem translateZ="40">
-                                                            <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">{project.title}</CardTitle>
+                                                            <CardTitle className="text-2xl font-bold text-foreground group-hover/bento:text-primary transition-colors duration-300 tracking-tight">{project.title}</CardTitle>
                                                         </CardItem>
-                                                        <CardItem translateZ="50" as="a" href={project.link} target="_blank" rel="noopener noreferrer" className="p-2 -mr-2 -mt-2 rounded-full hover:bg-white/10 transition-colors z-20">
-                                                            <ExternalLink className="w-5 h-5 text-muted-foreground hover:text-foreground" />
+                                                        <CardItem translateZ="50" as="a" href={project.link} target="_blank" rel="noopener noreferrer" className="p-3 -mr-2 -mt-2 rounded-full hover:bg-white/10 transition-colors z-20 backdrop-blur-sm bg-white/[0.02] border border-white/10 group-hover/bento:border-primary/50">
+                                                            <ExternalLink className="w-5 h-5 text-muted-foreground group-hover/bento:text-foreground group-hover/bento:rotate-12 transition-all duration-300" />
                                                         </CardItem>
                                                     </div>
                                                     <CardItem translateZ="30">
-                                                        <CardDescription className="text-sm mt-3 line-clamp-3 leading-relaxed text-muted-foreground/80">{project.description}</CardDescription>
+                                                        <CardDescription className="text-sm mt-3 line-clamp-3 md:line-clamp-4 leading-relaxed text-muted-foreground/80 font-light">{project.description}</CardDescription>
                                                     </CardItem>
                                                 </CardHeader>
-                                                <CardContent className="flex-1 pb-4 relative z-10">
-                                                    <CardItem translateZ="20" className="space-y-4">
-                                                        <div className="space-y-2.5 pt-2">
-                                                            {project.metrics.slice(0, 3).map((metric, i) => (
+                                                <CardContent className="flex-1 pb-4 relative z-10 flex flex-col justify-end">
+                                                    <CardItem translateZ="20" className="space-y-4 w-full">
+                                                        <div className="space-y-3 pt-2">
+                                                            {project.metrics.slice(0, index === 0 ? 3 : 2).map((metric, i) => (
                                                                 <div key={i} className="flex gap-3 items-start text-xs text-muted-foreground/90 leading-tight">
-                                                                    <span className="mt-1 w-1.5 h-1.5 rounded-full bg-primary/70 shrink-0 shadow-[0_0_5px_rgba(139,92,246,0.5)]" />
+                                                                    <span className="mt-1 w-1.5 h-1.5 rounded-full bg-primary/70 shrink-0 shadow-[0_0_10px_rgba(139,92,246,0.8)]" />
                                                                     <span>{metric}</span>
                                                                 </div>
                                                             ))}
                                                         </div>
                                                     </CardItem>
                                                 </CardContent>
-                                                <CardFooter className="flex-col items-start gap-4 pt-5 border-t border-white/5 bg-black/10 mt-auto relative z-10 flex-shrink-0">
+                                                <CardFooter className="flex-col items-start gap-4 pt-5 border-t border-white/5 bg-black/30 mt-auto relative z-10 flex-shrink-0 w-full backdrop-blur-xl">
                                                     <CardItem translateZ="40" className="flex flex-wrap gap-2">
-                                                        {project.tech.slice(0, 4).map((t) => (
-                                                            <Badge key={t} variant="secondary" className="font-mono text-[10px] uppercase font-medium bg-white/5 hover:bg-white/10 px-2.5 py-0.5 border-white/10 text-foreground/70">
+                                                        {project.tech.map((t) => (
+                                                            <Badge key={t} variant="secondary" className="font-mono text-[10px] uppercase font-medium bg-white/5 hover:bg-white/10 px-2.5 py-1 border-white/10 text-foreground/80">
                                                                 {t}
                                                             </Badge>
                                                         ))}
-                                                        {project.tech.length > 4 && (
-                                                            <Badge variant="outline" className="text-[10px] text-muted-foreground border-white/10">+{project.tech.length - 4}</Badge>
-                                                        )}
                                                     </CardItem>
                                                 </CardFooter>
                                             </CardItem>

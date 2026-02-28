@@ -6,22 +6,23 @@
 
   :root,
   .dark {
-    --background: 224 71% 4%;
+    /* Pure deep space black */
+    --background: 0 0% 0%;
     --foreground: 213 31% 91%;
 
-    --card: 224 71% 4%;
+    --card: 0 0% 3%;
     --card-foreground: 213 31% 91%;
 
-    --popover: 224 71% 4%;
+    --popover: 0 0% 3%;
     --popover-foreground: 213 31% 91%;
 
     --primary: 266 100% 64%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 222 47% 11%;
+    --secondary: 0 0% 10%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 223 47% 11%;
+    --muted: 0 0% 10%;
     --muted-foreground: 215.4 16.3% 56.9%;
 
     --accent: 216 100% 50%;
@@ -30,8 +31,8 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 216 34% 17%;
-    --input: 216 34% 17%;
+    --border: 0 0% 12%;
+    --input: 0 0% 12%;
     --ring: 266 100% 64%;
 
     --radius: 0.75rem;
@@ -46,6 +47,19 @@
   body {
     @apply bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Physical UI Noise Texture overlay */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.035;
+    z-index: 9999;
+    pointer-events: none;
   }
 
   h1,

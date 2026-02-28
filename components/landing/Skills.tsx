@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { DATA } from "@/lib/data";
-import { Magnetic } from "@/components/ui/magnetic";
+import { cn } from "@/lib/utils";
 
 export function Skills() {
     const row1 = [...DATA.skills.languages, ...DATA.skills.core];
@@ -28,47 +28,55 @@ export function Skills() {
             </div>
 
             <div className="relative z-10 flex flex-col gap-6 w-full -rotate-2 scale-105">
-                {/* Row 1 - Left to Right */}
-                <div className="flex overflow-hidden relative w-full group py-4">
-                    <div className="flex animate-marquee gap-6 pr-6 flex-nowrap shrink-0 group-hover:[animation-play-state:paused]" style={{ '--duration': '40s' } as React.CSSProperties}>
-                        {row1.map((skill, index) => (
-                            <Magnetic key={`row1-1-${skill}-${index}`}>
-                                <div className="px-8 py-4 glass-panel rounded-2xl text-foreground font-semibold whitespace-nowrap border-white/10 hover:text-primary transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.3)] text-lg cursor-pointer">
-                                    {skill}
-                                </div>
-                            </Magnetic>
-                        ))}
-                    </div>
-                    <div className="flex animate-marquee gap-6 pr-6 flex-nowrap shrink-0 group-hover:[animation-play-state:paused]" style={{ '--duration': '40s' } as React.CSSProperties} aria-hidden="true">
-                        {row1.map((skill, index) => (
-                            <Magnetic key={`row1-2-${skill}-${index}`}>
-                                <div className="px-8 py-4 glass-panel rounded-2xl text-foreground font-semibold whitespace-nowrap border-white/10 hover:text-primary transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.3)] text-lg cursor-pointer">
-                                    {skill}
-                                </div>
-                            </Magnetic>
-                        ))}
-                    </div>
-                </div>
+                {/* Draggable Physics Playground */}
+                <div className="relative w-[120%] -ml-[10%] h-[600px] border border-white/5 rounded-[3rem] overflow-hidden bg-white/[0.01] backdrop-blur-3xl shadow-inner flex items-center justify-center p-12">
 
-                {/* Row 2 - Right to Left (Reverse) */}
-                <div className="flex overflow-hidden relative w-full group py-4">
-                    <div className="flex animate-marquee gap-6 pr-6 flex-nowrap shrink-0 group-hover:[animation-play-state:paused] [animation-direction:reverse]" style={{ '--duration': '45s' } as React.CSSProperties}>
-                        {row2.map((skill, index) => (
-                            <Magnetic key={`row2-1-${skill}-${index}`}>
-                                <div className="px-8 py-4 glass-panel rounded-2xl text-foreground font-semibold whitespace-nowrap border-white/10 hover:text-accent transition-all duration-300 hover:border-accent/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] text-lg cursor-pointer">
-                                    {skill}
-                                </div>
-                            </Magnetic>
-                        ))}
+                    {/* The bounds constraint ref */}
+                    <div className="absolute inset-0 z-0" id="skills-bounds" />
+
+                    <div className="flex flex-wrap justify-center items-center gap-6 w-full max-w-5xl h-full relative z-10 z-[9999] pointer-events-auto">
+                        {[...row1, ...row2].map((skill, index) => {
+                            // Assign random initial float properties
+                            const isCore = row1.includes(skill);
+                            const floatDuration = 4 + (index % 5);
+                            const floatDistance = 15 + (index % 10);
+
+                            return (
+                                <motion.div
+                                    key={skill}
+                                    drag
+                                    dragConstraints={{ top: -250, bottom: 250, left: -400, right: 400 }}
+                                    dragElastic={0.2}
+                                    dragTransition={{ bounceStiffness: 400, bounceDamping: 10 }}
+                                    whileTap={{ cursor: "grabbing", scale: 0.95 }}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileDrag={{ zIndex: 50, scale: 1.15, rotate: 5 }}
+                                    initial={{ y: 50, opacity: 0 }}
+                                    whileInView={{ y: 0, opacity: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: index * 0.05 }}
+                                    animate={{
+                                        y: [0, -floatDistance, 0],
+                                    }}
+                                    // @ts-ignore
+                                    transition={{
+                                        y: { duration: floatDuration, repeat: Infinity, ease: "easeInOut" }
+                                    }}
+                                    className={cn(
+                                        "px-6 py-4 rounded-full text-lg cursor-grab select-none shadow-2xl glass-panel relative overflow-hidden group/orb border",
+                                        isCore ? "border-primary/30 text-primary-foreground bg-primary/10" : "border-accent/30 text-accent-foreground bg-accent/10"
+                                    )}
+                                >
+                                    <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent opacity-0 group-hover/orb:opacity-100 transition-opacity"></div>
+                                    <span className="relative z-10 font-bold tracking-tight mix-blend-screen">{skill}</span>
+                                </motion.div>
+                            );
+                        })}
                     </div>
-                    <div className="flex animate-marquee gap-6 pr-6 flex-nowrap shrink-0 group-hover:[animation-play-state:paused] [animation-direction:reverse]" style={{ '--duration': '45s' } as React.CSSProperties} aria-hidden="true">
-                        {row2.map((skill, index) => (
-                            <Magnetic key={`row2-2-${skill}-${index}`}>
-                                <div className="px-8 py-4 glass-panel rounded-2xl text-foreground font-semibold whitespace-nowrap border-white/10 hover:text-accent transition-all duration-300 hover:border-accent/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] text-lg cursor-pointer">
-                                    {skill}
-                                </div>
-                            </Magnetic>
-                        ))}
+
+                    {/* Instructional text inside bounds */}
+                    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-muted-foreground/50 text-sm font-mono tracking-widest uppercase pointer-events-none">
+                        Drag to interact
                     </div>
                 </div>
             </div>
