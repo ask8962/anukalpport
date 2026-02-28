@@ -67,8 +67,11 @@ export const metadata: Metadata = {
     icon: [{ url: "/favicon.ico", sizes: "32x32", type: "image/x-icon" }],
     apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
   },
-    generator: 'v0.app'
+  generator: 'v0.app'
 }
+
+import { SmoothScroll } from "@/components/ui/smooth-scroll";
+import { CustomCursor } from "@/components/ui/custom-cursor";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const structuredData = {
@@ -98,7 +101,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
+        <CustomCursor />
+      </body>
     </html>
   )
 }

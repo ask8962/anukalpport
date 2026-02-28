@@ -5,12 +5,27 @@ import { Button } from "@/components/ui/button";
 import { DATA } from "@/lib/data";
 import { Mail, Linkedin, Send } from "lucide-react";
 
+import { SparklesCore } from "@/components/ui/sparkles";
+
 export function Contact() {
     return (
         <section id="contact" className="py-32 relative overflow-hidden bg-background">
             {/* Background Effects */}
             <div className="absolute inset-0 z-0 bg-grid-white/[0.015] pointer-events-none" />
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/20 blur-[150px] rounded-full pointer-events-none" />
+
+            <div className="absolute inset-0 w-full h-full pointer-events-none">
+                <SparklesCore
+                    id="tsparticlesfullpage"
+                    background="transparent"
+                    minSize={0.6}
+                    maxSize={1.4}
+                    particleDensity={100}
+                    className="w-full h-full"
+                    particleColor="#FFFFFF"
+                />
+            </div>
+
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/20 blur-[150px] rounded-full pointer-events-none z-0" />
 
             <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
                 <motion.div

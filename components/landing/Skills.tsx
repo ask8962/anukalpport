@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { DATA } from "@/lib/data";
+import { Magnetic } from "@/components/ui/magnetic";
 
 export function Skills() {
     const row1 = [...DATA.skills.languages, ...DATA.skills.core];
@@ -31,16 +32,20 @@ export function Skills() {
                 <div className="flex overflow-hidden relative w-full group py-4">
                     <div className="flex animate-marquee gap-6 pr-6 flex-nowrap shrink-0 group-hover:[animation-play-state:paused]" style={{ '--duration': '40s' } as React.CSSProperties}>
                         {row1.map((skill, index) => (
-                            <div key={`row1-1-${skill}-${index}`} className="px-8 py-4 glass-panel rounded-2xl text-foreground font-semibold whitespace-nowrap border-white/10 hover:text-primary transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:-translate-y-1 text-lg">
-                                {skill}
-                            </div>
+                            <Magnetic key={`row1-1-${skill}-${index}`}>
+                                <div className="px-8 py-4 glass-panel rounded-2xl text-foreground font-semibold whitespace-nowrap border-white/10 hover:text-primary transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.3)] text-lg cursor-pointer">
+                                    {skill}
+                                </div>
+                            </Magnetic>
                         ))}
                     </div>
                     <div className="flex animate-marquee gap-6 pr-6 flex-nowrap shrink-0 group-hover:[animation-play-state:paused]" style={{ '--duration': '40s' } as React.CSSProperties} aria-hidden="true">
                         {row1.map((skill, index) => (
-                            <div key={`row1-2-${skill}-${index}`} className="px-8 py-4 glass-panel rounded-2xl text-foreground font-semibold whitespace-nowrap border-white/10 hover:text-primary transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:-translate-y-1 text-lg">
-                                {skill}
-                            </div>
+                            <Magnetic key={`row1-2-${skill}-${index}`}>
+                                <div className="px-8 py-4 glass-panel rounded-2xl text-foreground font-semibold whitespace-nowrap border-white/10 hover:text-primary transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(139,92,246,0.3)] text-lg cursor-pointer">
+                                    {skill}
+                                </div>
+                            </Magnetic>
                         ))}
                     </div>
                 </div>
@@ -49,16 +54,20 @@ export function Skills() {
                 <div className="flex overflow-hidden relative w-full group py-4">
                     <div className="flex animate-marquee gap-6 pr-6 flex-nowrap shrink-0 group-hover:[animation-play-state:paused] [animation-direction:reverse]" style={{ '--duration': '45s' } as React.CSSProperties}>
                         {row2.map((skill, index) => (
-                            <div key={`row2-1-${skill}-${index}`} className="px-8 py-4 glass-panel rounded-2xl text-foreground font-semibold whitespace-nowrap border-white/10 hover:text-accent transition-all duration-300 hover:border-accent/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:-translate-y-1 text-lg">
-                                {skill}
-                            </div>
+                            <Magnetic key={`row2-1-${skill}-${index}`}>
+                                <div className="px-8 py-4 glass-panel rounded-2xl text-foreground font-semibold whitespace-nowrap border-white/10 hover:text-accent transition-all duration-300 hover:border-accent/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] text-lg cursor-pointer">
+                                    {skill}
+                                </div>
+                            </Magnetic>
                         ))}
                     </div>
                     <div className="flex animate-marquee gap-6 pr-6 flex-nowrap shrink-0 group-hover:[animation-play-state:paused] [animation-direction:reverse]" style={{ '--duration': '45s' } as React.CSSProperties} aria-hidden="true">
                         {row2.map((skill, index) => (
-                            <div key={`row2-2-${skill}-${index}`} className="px-8 py-4 glass-panel rounded-2xl text-foreground font-semibold whitespace-nowrap border-white/10 hover:text-accent transition-all duration-300 hover:border-accent/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:-translate-y-1 text-lg">
-                                {skill}
-                            </div>
+                            <Magnetic key={`row2-2-${skill}-${index}`}>
+                                <div className="px-8 py-4 glass-panel rounded-2xl text-foreground font-semibold whitespace-nowrap border-white/10 hover:text-accent transition-all duration-300 hover:border-accent/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] text-lg cursor-pointer">
+                                    {skill}
+                                </div>
+                            </Magnetic>
                         ))}
                     </div>
                 </div>
