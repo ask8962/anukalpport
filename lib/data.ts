@@ -115,15 +115,15 @@ export const DATA = {
       ]
     },
     {
-      title: "GLA Gallery",
-      description: "Campus Memories & Event Management Platform for photo sharing, hackathons, and rewards.",
-      dates: "Jan 2026",
+      title: "CampusHub",
+      description: "Multi-Tenant Campus Engagement SaaS Platform for universities to manage events, hackathons, and clubs.",
+      dates: "May 2026",
       tech: ["Next.js 16", "TypeScript 5", "Firebase", "Upstash Redis", "Tailwind CSS"],
-      link: "https://glagallery.vercel.app/",
+      link: "https://campushub.pro",
       metrics: [
-        "Built a comprehensive social platform with 24-hour stories, photo uploads, and a gamified points system.",
-        "Developed a robust event hub supporting RSVP, QR ticketing, hackathon judging, and digital club management.",
-        "Ensured security with @gla.ac.in email-only access, Upstash rate limiting, and 2FA protection."
+        "Architected a Multi-Tenant SaaS platform with self-serve onboarding, dynamic tenant routing, and NAAC/NBA report generation.",
+        "Built a comprehensive social platform with an anonymous confessions feed, 24-hour stories, and a gamified points system.",
+        "Developed a robust event hub supporting RSVP, QR ticketing, hackathon judging, and digital club management."
       ]
     },
     {
