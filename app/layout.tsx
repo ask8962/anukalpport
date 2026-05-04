@@ -2,10 +2,12 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Space_Grotesk } from "next/font/google"
 import { Bebas_Neue } from "next/font/google"
+import { Playfair_Display } from "next/font/google"
 import "./globals.css"
 
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-sans", display: "swap" })
 const bebas = Bebas_Neue({ subsets: ["latin"], weight: "400", variable: "--font-display", display: "swap" })
+const playfair = Playfair_Display({ subsets: ["latin"], style: ["italic", "normal"], variable: "--font-serif", display: "swap" })
 
 export const metadata: Metadata = {
   title: "Anukalp Gupta - Full-Stack Developer & Web Designer | Portfolio",
@@ -90,7 +92,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   }
 
   return (
-    <html lang="en" suppressHydrationWarning className={`${spaceGrotesk.variable} ${bebas.variable} antialiased dark`}>
+    <html lang="en" suppressHydrationWarning className={`${spaceGrotesk.variable} ${bebas.variable} ${playfair.variable} antialiased dark`}>
       <head>
         <script
           type="application/ld+json"

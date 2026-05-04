@@ -48,7 +48,7 @@ export function Contact() {
                     className="text-5xl md:text-8xl font-black mb-8 tracking-tighter text-foreground drop-shadow-sm uppercase leading-[0.85]"
                 >
                     Build Something<br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-blue-500">Amazing.</span>
+                    <span className="font-serif italic font-light lowercase tracking-normal text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-blue-500">amazing.</span>
                 </motion.h3>
 
                 <motion.p

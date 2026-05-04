@@ -21,9 +21,9 @@ export function About() {
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     className="mb-16"
                 >
-                    <h3 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4 text-foreground flex items-center gap-3">
+                    <h3 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4 text-foreground flex items-center gap-3 uppercase">
                         <Zap className="h-8 w-8 text-primary" />
-                        About Me
+                        About <span className="font-serif italic text-primary lowercase tracking-normal">me.</span>
                     </h3>
                     <p className="text-muted-foreground text-lg max-w-2xl">A glimpse into my background, problem-solving journey, and where I'm based.</p>
                 </motion.div>
