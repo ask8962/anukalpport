@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { DATA } from "@/lib/data";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Trophy, Filter } from "lucide-react";
+import { ExternalLink, Trophy, Filter, X } from "lucide-react";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 import { cn } from "@/lib/utils";
 
@@ -15,6 +15,19 @@ const CATEGORIES = [ALL_TAG, "Full Stack", "Backend", "Frontend", "AI/ML"];
 
 export function Projects() {
     const [activeCategory, setActiveCategory] = useState(ALL_TAG);
+    const [selectedProject, setSelectedProject] = useState<typeof DATA.projects[0] | null>(null);
+
+    // Lock body scroll when modal is open
+    useEffect(() => {
+        if (selectedProject) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [selectedProject]);
 
     // Helper to categorize projects based on tech stack or title
     // Since we didn't add explicit categories to data.ts, we infer them
@@ -99,12 +112,13 @@ export function Projects() {
                             {filteredProjects.map((project, index) => (
                                 <motion.div
                                     key={project.title}
-                                    layout
+                                    layoutId={`project-${project.title}`}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, scale: 0.95 }}
                                     transition={{ duration: 0.4 }}
-                                    className={cn("h-full w-full", getBentoClass(index))}
+                                    className={cn("h-full w-full cursor-pointer", getBentoClass(index))}
+                                    onClick={() => setSelectedProject(project)}
                                 >
                                     <CardContainer className="h-full w-full" containerClassName="py-0 flex items-stretch h-full w-full">
                                         <CardBody className="w-full h-full flex group/bento">
@@ -154,6 +168,93 @@ export function Projects() {
                             ))}
                         </AnimatePresence>
                     </div>
+
+                    {/* Expandable Project Modal Overlay */}
+                    <AnimatePresence>
+                        {selectedProject && (
+                            <>
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    onClick={() => setSelectedProject(null)}
+                                    className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 cursor-pointer"
+                                />
+                                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-10 pointer-events-none">
+                                    <motion.div
+                                        layoutId={`project-${selectedProject.title}`}
+                                        className="w-full max-w-5xl max-h-[90vh] bg-background/80 backdrop-blur-3xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl flex flex-col pointer-events-auto relative"
+                                    >
+                                        <button
+                                            onClick={() => setSelectedProject(null)}
+                                            className="absolute top-4 right-4 z-20 p-2 bg-black/50 hover:bg-white/10 rounded-full transition-colors backdrop-blur-md border border-white/10"
+                                        >
+                                            <X className="w-5 h-5 text-white" />
+                                        </button>
+
+                                        {/* Dynamic Visual Area with Noise */}
+                                        <div className="relative h-64 md:h-96 w-full flex-shrink-0 overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-background border-b border-white/10 group">
+                                            <div className="absolute inset-0 z-0 bg-grid-white/[0.03] pointer-events-none" />
+                                            <div className="absolute inset-0 opacity-20 mix-blend-overlay pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
+                                            
+                                            <div className="absolute inset-0 flex items-center justify-center z-10">
+                                                <div className="w-32 h-32 md:w-48 md:h-48 rounded-full bg-primary/20 blur-[80px] group-hover:bg-primary/40 group-hover:blur-[100px] transition-all duration-700"></div>
+                                                <h4 className="text-4xl md:text-6xl font-black text-white/50 tracking-tighter absolute drop-shadow-2xl mix-blend-overlay uppercase text-center px-4">{selectedProject.title}</h4>
+                                            </div>
+                                        </div>
+
+                                        {/* Content Area */}
+                                        <div className="p-6 md:p-10 flex-1 overflow-y-auto custom-scrollbar flex flex-col">
+                                            <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-8">
+                                                <div>
+                                                    <h3 className="text-3xl md:text-5xl font-black text-foreground tracking-tight mb-4">{selectedProject.title}</h3>
+                                                    <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl font-light">{selectedProject.description}</p>
+                                                </div>
+                                                <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className="flex-shrink-0">
+                                                    <Button size="lg" className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold group px-8">
+                                                        View Live Site
+                                                        <ExternalLink className="ml-2 w-4 h-4 group-hover:rotate-12 transition-transform" />
+                                                    </Button>
+                                                </a>
+                                            </div>
+
+                                            <div className="mb-10">
+                                                <h4 className="text-xl font-bold mb-4 text-foreground/90">Key Metrics & Features</h4>
+                                                <ul className="space-y-4">
+                                                    {selectedProject.metrics.map((metric, i) => (
+                                                        <li key={i} className="flex gap-4 items-start text-muted-foreground/90 leading-relaxed">
+                                                            <div className="mt-2 w-2 h-2 rounded-full bg-primary/70 shrink-0 shadow-[0_0_10px_rgba(139,92,246,0.8)]" />
+                                                            <span className="text-base">{metric}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        {/* Tech Stack Marquee Footer */}
+                                        <div className="h-16 md:h-20 border-t border-white/10 bg-black/40 flex items-center overflow-hidden flex-shrink-0 relative">
+                                            <div className="absolute left-0 w-16 h-full bg-gradient-to-r from-black/80 to-transparent z-10 pointer-events-none"></div>
+                                            <div className="absolute right-0 w-16 h-full bg-gradient-to-l from-black/80 to-transparent z-10 pointer-events-none"></div>
+                                            
+                                            <motion.div 
+                                                className="flex whitespace-nowrap items-center gap-8 px-4"
+                                                animate={{ x: ["0%", "-50%"] }}
+                                                transition={{ ease: "linear", duration: 15, repeat: Infinity }}
+                                            >
+                                                {/* Duplicate the array to create a seamless infinite scroll loop */}
+                                                {[...selectedProject.tech, ...selectedProject.tech, ...selectedProject.tech, ...selectedProject.tech].map((t, i) => (
+                                                    <span key={`${t}-${i}`} className="text-sm md:text-base font-mono font-medium text-foreground/60 uppercase tracking-wider flex items-center gap-8">
+                                                        {t}
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
+                                                    </span>
+                                                ))}
+                                            </motion.div>
+                                        </div>
+                                    </motion.div>
+                                </div>
+                            </>
+                        )}
+                    </AnimatePresence>
 
                     <div className="mt-32">
                         <h4 className="flex items-center gap-3 text-2xl font-bold mb-10 text-foreground">
