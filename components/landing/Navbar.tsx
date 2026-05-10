@@ -1,15 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { DATA } from "@/lib/data";
 import { motion, AnimatePresence } from "framer-motion";
 
+const SECTION_IDS = ["about", "experience", "projects", "skills", "contact"] as const;
+
 export function Navbar() {
+    const pathname = usePathname();
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState<string | null>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -18,6 +23,41 @@ export function Navbar() {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    useEffect(() => {
+        if (pathname !== "/") {
+            setActiveSection(null);
+            return;
+        }
+        const update = () => {
+            const y = window.scrollY + 168;
+            let current = SECTION_IDS[0];
+            for (const id of SECTION_IDS) {
+                const el = document.getElementById(id);
+                if (!el) continue;
+                const top = el.getBoundingClientRect().top + window.scrollY;
+                if (top <= y) current = id;
+            }
+            setActiveSection(current);
+        };
+        update();
+        window.addEventListener("scroll", update, { passive: true });
+        window.addEventListener("resize", update);
+        return () => {
+            window.removeEventListener("scroll", update);
+            window.removeEventListener("resize", update);
+        };
+    }, [pathname]);
+
+    const linkActive = (href: string) => {
+        if (href.startsWith("#")) {
+            return pathname === "/" && activeSection === href.slice(1);
+        }
+        if (href === "/case-studies") {
+            return pathname === "/case-studies" || pathname.startsWith("/case-studies/");
+        }
+        return false;
+    };
 
     const navItems = [
         { label: "About", href: "#about" },
@@ -51,7 +91,14 @@ export function Navbar() {
                         <a
                             key={item.label}
                             href={item.href}
-                            className="text-sm font-semibold text-muted-foreground/80 hover:text-foreground transition-all duration-300 hover:scale-105"
+                            className={cn(
+                                "relative text-sm font-semibold transition-all duration-300 hover:scale-105",
+                                linkActive(item.href)
+                                    ? "text-primary"
+                                    : "text-muted-foreground/80 hover:text-foreground",
+                                linkActive(item.href) &&
+                                    "after:absolute after:left-0 after:right-0 after:-bottom-1 after:h-0.5 after:rounded-full after:bg-gradient-to-r after:from-primary after:to-accent"
+                            )}
                         >
                             {item.label}
                         </a>
@@ -89,7 +136,12 @@ export function Navbar() {
                                 <a
                                     key={item.label}
                                     href={item.href}
-                                    className="text-lg font-medium text-muted-foreground hover:text-white hover:pl-2 transition-all duration-300 border-b border-white/5 pb-2"
+                                    className={cn(
+                                        "text-lg font-medium hover:pl-2 transition-all duration-300 border-b border-white/5 pb-2",
+                                        linkActive(item.href)
+                                            ? "text-primary border-primary/20"
+                                            : "text-muted-foreground hover:text-white"
+                                    )}
                                     onClick={() => setMobileMenuOpen(false)}
                                 >
                                     {item.label}

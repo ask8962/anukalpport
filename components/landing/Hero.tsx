@@ -1,12 +1,14 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight, ChevronDown, Download, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/lib/data";
 import { Spotlight } from "@/components/ui/spotlight";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+import { Magnetic } from "@/components/ui/magnetic";
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -25,8 +27,34 @@ const itemVariants: any = {
 };
 
 export function Hero() {
+    const [glow, setGlow] = useState({ x: 50, y: 35 });
+    const [reduceMotion, setReduceMotion] = useState(false);
+
+    useEffect(() => {
+        setReduceMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    }, []);
+
     return (
-        <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background pt-20">
+        <section
+            className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background pt-20"
+            onMouseMove={(e) => {
+                if (reduceMotion) return;
+                const r = e.currentTarget.getBoundingClientRect();
+                setGlow({
+                    x: ((e.clientX - r.left) / r.width) * 100,
+                    y: ((e.clientY - r.top) / r.height) * 100,
+                });
+            }}
+        >
+            {/* Cursor-following ambient wash */}
+            {!reduceMotion && (
+                <div
+                    className="pointer-events-none absolute inset-0 z-[-1] opacity-70 transition-opacity duration-300"
+                    style={{
+                        background: `radial-gradient(70% 55% at ${glow.x}% ${glow.y}%, hsl(var(--primary) / 0.14), transparent 62%)`,
+                    }}
+                />
+            )}
             {/* Animated Grid & Gradients */}
             <div className="absolute inset-0 z-[-2] bg-grid-white/[0.02]" />
             <div className="absolute inset-0 z-[-2] bg-background [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,transparent_0%,black_100%)]" />
@@ -88,17 +116,21 @@ export function Hero() {
                     </motion.div>
 
                     <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 justify-center items-center w-full sm:w-auto">
-                        <Button size="lg" className="h-14 px-8 text-lg group rounded-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_20px_rgba(139,92,246,0.4)] transition-all hover:scale-105 w-full sm:w-auto" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
-                            View Projects
-                            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1.5 transition-transform" />
-                        </Button>
-
-                        <a href={DATA.personalInfo.resumeUrl} download className="w-full sm:w-auto">
-                            <Button variant="outline" size="lg" className="h-14 px-8 text-lg rounded-full glass hover:bg-white/10 w-full sm:w-auto transition-all hover:scale-105 border-white/10">
-                                <Download className="mr-2 h-5 w-5" />
-                                Download CV
+                        <Magnetic className="w-full sm:w-auto">
+                            <Button size="lg" className="h-14 px-8 text-lg group rounded-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_20px_rgba(139,92,246,0.4)] transition-all hover:scale-105 w-full sm:w-auto" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
+                                View Projects
+                                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1.5 transition-transform" />
                             </Button>
-                        </a>
+                        </Magnetic>
+
+                        <Magnetic className="w-full sm:w-auto">
+                            <a href={DATA.personalInfo.resumeUrl} download className="block w-full sm:w-auto">
+                                <Button variant="outline" size="lg" className="h-14 px-8 text-lg rounded-full glass hover:bg-white/10 w-full sm:w-auto transition-all hover:scale-105 border-white/10">
+                                    <Download className="mr-2 h-5 w-5" />
+                                    Download CV
+                                </Button>
+                            </a>
+                        </Magnetic>
                     </motion.div>
 
                     <motion.div variants={itemVariants} className="mt-16 flex justify-center gap-6 text-muted-foreground">
@@ -115,6 +147,18 @@ export function Hero() {
                     </motion.div>
                 </motion.div>
             </div>
+
+            {!reduceMotion && (
+                <button
+                    type="button"
+                    aria-label="Scroll to about"
+                    onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
+                    className="absolute bottom-8 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground/55 transition-colors hover:text-primary/90 md:flex motion-reduce:hidden"
+                >
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.28em]">Explore</span>
+                    <ChevronDown className="h-6 w-6 animate-scroll-hint" strokeWidth={1.5} />
+                </button>
+            )}
         </section>
     );
 }

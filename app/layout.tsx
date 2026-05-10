@@ -74,6 +74,7 @@ export const metadata: Metadata = {
 
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import { CustomCursor } from "@/components/ui/custom-cursor";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const structuredData = {
@@ -105,6 +106,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="font-sans">
         <SmoothScroll>
+          <ScrollProgress />
           {children}
         </SmoothScroll>
         <CustomCursor />
