@@ -6,7 +6,8 @@ import { DATA } from "@/lib/data";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Trophy, Filter, X } from "lucide-react";
+import Link from "next/link";
+import { BookOpen, ExternalLink, Trophy, X } from "lucide-react";
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 import { cn } from "@/lib/utils";
 
@@ -210,12 +211,30 @@ export function Projects() {
                                                     <h3 className="text-3xl md:text-5xl font-black text-foreground tracking-tight mb-4">{selectedProject.title}</h3>
                                                     <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl font-light">{selectedProject.description}</p>
                                                 </div>
-                                                <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className="flex-shrink-0">
-                                                    <Button size="lg" className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold group px-8">
-                                                        View Live Site
-                                                        <ExternalLink className="ml-2 w-4 h-4 group-hover:rotate-12 transition-transform" />
-                                                    </Button>
-                                                </a>
+                                                <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0 w-full sm:w-auto">
+                                                    {"caseStudySlug" in selectedProject && selectedProject.caseStudySlug && (
+                                                        <Button
+                                                            asChild
+                                                            size="lg"
+                                                            variant="outline"
+                                                            className="rounded-full border-white/20 bg-white/5 hover:bg-white/10 font-bold px-8"
+                                                        >
+                                                            <Link
+                                                                href={`/case-studies/${selectedProject.caseStudySlug}`}
+                                                                onClick={() => setSelectedProject(null)}
+                                                            >
+                                                                <BookOpen className="w-4 h-4" />
+                                                                Case study
+                                                            </Link>
+                                                        </Button>
+                                                    )}
+                                                    <a href={selectedProject.link} target="_blank" rel="noopener noreferrer" className="flex-shrink-0">
+                                                        <Button size="lg" className="w-full sm:w-auto rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold group px-8">
+                                                            View Live Site
+                                                            <ExternalLink className="ml-2 w-4 h-4 group-hover:rotate-12 transition-transform" />
+                                                        </Button>
+                                                    </a>
+                                                </div>
                                             </div>
 
                                             <div className="mb-10">

@@ -1,5 +1,8 @@
 import { Github, Linkedin, Mail, FileText, Code, Database, Server, Smartphone, Globe } from "lucide-react";
 
+/** Featured projects that have a long-form write-up under /case-studies/[slug] */
+export type ProjectCaseStudySlug = "campushub" | "ai-code-explainer" | "foodexpress";
+
 export const DATA = {
   name: "Anukalp Gupta",
   initials: "AG",
@@ -71,6 +74,7 @@ export const DATA = {
       dates: "Feb 2026",
       tech: ["Next.js 14", "Groq (LLaMA 3.3)", "Three.js", "Tailwind CSS"],
       link: "https://gla-code-aa.vercel.app/",
+      caseStudySlug: "ai-code-explainer" as ProjectCaseStudySlug,
       metrics: [
         "Provides instant explanations with a step-by-step logic breakdown for Python, Java, C++, and more.",
         "Performs real-time Big-O complexity analysis for Time and Space.",
@@ -120,6 +124,7 @@ export const DATA = {
       dates: "May 2026",
       tech: ["Next.js 16", "TypeScript 5", "Firebase", "Upstash Redis", "Tailwind CSS"],
       link: "https://campushub.pro",
+      caseStudySlug: "campushub" as ProjectCaseStudySlug,
       metrics: [
         "Architected a Multi-Tenant SaaS platform with self-serve onboarding, dynamic tenant routing, and NAAC/NBA report generation.",
         "Built a comprehensive social platform with an anonymous confessions feed, 24-hour stories, and a gamified points system.",
@@ -132,6 +137,7 @@ export const DATA = {
       dates: "Dec 2025",
       tech: ["Next.js 14", "React", "Firebase", "Tailwind CSS", "TypeScript"],
       link: "https://foodexp.vercel.app/",
+      caseStudySlug: "foodexpress" as ProjectCaseStudySlug,
       metrics: [
         "Architected a complex multi-role system supporting Customers, Shopkeepers, Delivery Partners, and Admins.",
         "Implemented real-time live order tracking via Firebase listeners and integrated offline support with IndexedDB.",
