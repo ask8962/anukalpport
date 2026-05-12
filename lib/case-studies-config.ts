@@ -1,8 +1,3 @@
-import fs from "fs/promises";
-import path from "node:path";
-
-const CASE_STUDY_DIR = path.join(process.cwd(), "content", "case-studies");
-
 export type CaseStudySlug =
   | "campushub"
   | "campushub-recruiter"
@@ -15,9 +10,7 @@ export type CaseStudyMeta = {
   title: string;
   description: string;
   file: string;
-  /** Main case study slug (for recruiter kit breadcrumb / back link) */
   parentSlug?: CaseStudySlug;
-  /** Linked recruiter one-pager slug */
   recruiterSlug?: CaseStudySlug;
 };
 
@@ -66,10 +59,4 @@ export const FEATURED_CASE_STUDY_SLUGS: CaseStudySlug[] = ["campushub", "ai-code
 
 export function isCaseStudySlug(s: string): s is CaseStudySlug {
   return s in CASE_STUDIES;
-}
-
-export async function getCaseStudyMarkdown(slug: CaseStudySlug): Promise<string> {
-  const meta = CASE_STUDIES[slug];
-  const filePath = path.join(CASE_STUDY_DIR, meta.file);
-  return fs.readFile(filePath, "utf8");
 }

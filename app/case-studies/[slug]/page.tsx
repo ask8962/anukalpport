@@ -5,10 +5,10 @@ import type { Metadata } from "next";
 import {
   CASE_STUDIES,
   CASE_STUDY_SLUGS,
-  getCaseStudyMarkdown,
   isCaseStudySlug,
   type CaseStudySlug,
-} from "@/lib/case-studies";
+} from "@/lib/case-studies-config";
+import { getCaseStudyMarkdown } from "@/lib/case-studies-fs";
 import { CaseStudyMarkdown } from "@/components/case-study/case-study-markdown";
 
 type Props = { params: { slug: string } };

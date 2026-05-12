@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Sparkles } from "lucide-react";
-import { CASE_STUDIES, FEATURED_CASE_STUDY_SLUGS, type CaseStudySlug } from "@/lib/case-studies";
+import { CASE_STUDIES, FEATURED_CASE_STUDY_SLUGS, type CaseStudySlug } from "@/lib/case-studies-config";
 
 const container = {
   hidden: { opacity: 0 },
