@@ -46,6 +46,13 @@ const config: Config = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
+        kernel: {
+          void: 'hsl(var(--kernel-void))',
+          surface: 'hsl(var(--kernel-surface))',
+          signal: 'hsl(var(--signal))',
+          pulse: 'hsl(var(--pulse))',
+          mint: 'hsl(var(--mint))',
+        },
         chart: {
           '1': 'hsl(var(--chart-1))',
           '2': 'hsl(var(--chart-2))',
@@ -65,6 +72,8 @@ const config: Config = {
         },
       },
       fontFamily: {
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        mono: ['ui-monospace', 'Cascadia Code', 'Consolas', 'monospace'],
         serif: ['var(--font-serif)', 'serif'],
       },
       borderRadius: {

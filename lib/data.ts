@@ -8,8 +8,9 @@ export const DATA = {
   initials: "AG",
   personalInfo: {
     name: "Anukalp Gupta",
-    role: "Backend Engineer",
-    tagline: "Building scalable backend systems with Java, Spring Boot, and Cloud Architecture.",
+    role: "Backend Engineer | Java & Spring Boot",
+    tagline:
+      "Production REST APIs, multi-tenant SaaS, and AI-integrated systems — built for 500+ users with strong DSA and system design fundamentals.",
     location: "Mathura, Uttar Pradesh",
     email: "ganukalp70@gmail.com",
     phone: "+91-8962393954",
@@ -20,7 +21,8 @@ export const DATA = {
   },
 
   about: {
-    summary: "B.Tech Computer Science student (2023-2027) with a strong focus on backend engineering and system design. Proficient in Java and Spring Boot ecosystems, with a track record of building performant, scalable applications. Experienced in optimizing database queries, implementing secure authentication systems, and handling high-concurrency workloads.",
+    summary:
+      "Backend-focused engineer skilled in building production REST APIs, scalable SaaS platforms, and AI-integrated applications. Strong foundation in DSA, system design, and database optimization — from Spring Boot microservices to Firebase multi-tenant products used by 500+ users.",
     education: {
       degree: "Bachelor of Technology in Computer Science",
       university: "GLA University",

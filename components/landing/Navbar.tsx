@@ -80,8 +80,11 @@ export function Navbar() {
             >
                 <a href="#" className="flex-shrink-0 relative group">
                     <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <span className="text-xl font-black tracking-tighter hover:text-primary transition-colors relative z-10">
+                    <span className="text-xl font-black tracking-tighter hover:text-kernel-signal transition-colors relative z-10 font-mono">
                         {DATA.initials}
+                        <span className="ml-1.5 hidden text-[10px] font-normal uppercase tracking-widest text-muted-foreground sm:inline">
+                            kernel
+                        </span>
                     </span>
                 </a>
 

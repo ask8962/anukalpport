@@ -1,37 +1,33 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Space_Grotesk } from "next/font/google"
-import { Bebas_Neue } from "next/font/google"
-import { Playfair_Display } from "next/font/google"
+import { Space_Grotesk, Bebas_Neue, Playfair_Display } from "next/font/google"
 import "./globals.css"
 
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-sans", display: "swap" })
 const bebas = Bebas_Neue({ subsets: ["latin"], weight: "400", variable: "--font-display", display: "swap" })
 const playfair = Playfair_Display({ subsets: ["latin"], style: ["italic", "normal"], variable: "--font-serif", display: "swap" })
-
 export const metadata: Metadata = {
-  title: "Anukalp Gupta - Full-Stack Developer & Web Designer | Portfolio",
+  title: "Anukalp Gupta — Backend Engineer | Java, Spring Boot, SaaS & AI",
   description:
-    "Full-stack developer specializing in React, Next.js, and modern web technologies. Building performant, accessible web experiences. Available for freelance projects.",
+    "Backend engineer building multi-tenant SaaS, production REST APIs, and AI-integrated platforms. Java, Spring Boot, Firebase, Groq. 500+ users. Portfolio & case studies.",
   keywords: [
-    "web developer",
-    "full-stack developer",
-    "React developer",
-    "Next.js developer",
-    "JavaScript developer",
-    "UI/UX designer",
-    "freelance developer",
+    "backend engineer",
+    "Java developer",
+    "Spring Boot",
+    "multi-tenant SaaS",
+    "system design",
+    "Next.js",
+    "Firebase",
+    "Groq",
     "portfolio",
-    "web design",
-    "web development services",
   ],
   authors: [{ name: "Anukalp Gupta", url: "https://anukalpeu.vercel.app" }],
   creator: "Anukalp Gupta",
   metadataBase: new URL("https://anukalpeu.vercel.app"),
   openGraph: {
-    title: "Anukalp Gupta - Full-Stack Developer & Web Designer",
+    title: "Anukalp Gupta — Backend Engineer | Systems at Scale",
     description:
-      "Full-stack developer specializing in React, Next.js, and modern web technologies. Showcasing 6+ projects with 500+ active users.",
+      "Multi-tenant SaaS, Spring Boot platforms, and AI products — 500+ users, 200+ DSA problems. Explore case studies and live systems.",
     type: "website",
     url: "https://anukalpeu.vercel.app",
     siteName: "Anukalp Gupta Portfolio",
@@ -40,15 +36,15 @@ export const metadata: Metadata = {
         url: "/images/anukalp-photo.jpeg",
         width: 1200,
         height: 630,
-        alt: "Anukalp Gupta - Full-Stack Developer",
+        alt: "Anukalp Gupta — Backend Engineer",
       },
     ],
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Anukalp Gupta - Full-Stack Developer",
-    description: "Building beautiful, performant web experiences. React, Next.js, and modern web technologies.",
+    title: "Anukalp Gupta — Backend Engineer",
+    description: "Production APIs, multi-tenant SaaS, and AI systems. Java · Spring Boot · Firebase · Groq.",
     images: ["/images/anukalp-photo.jpeg"],
   },
   robots: {
@@ -82,14 +78,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "@type": "Person",
     name: "Anukalp Gupta",
     url: "https://anukalpeu.vercel.app",
-    jobTitle: "Full-Stack Developer",
+    jobTitle: "Backend Engineer",
     worksFor: {
       "@type": "Organization",
       name: "Self-Employed",
     },
     sameAs: ["https://github.com/ask8962", "https://www.linkedin.com/in/anukalp-gupta-23b4b7319/"],
     image: "https://anukalpeu.vercel.app/images/anukalp-photo.jpeg",
-    description: "Full-stack developer specializing in React, Next.js, and modern web technologies",
+    description: "Backend engineer specializing in Java, Spring Boot, multi-tenant SaaS, and AI-integrated applications",
   }
 
   return (
@@ -104,7 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="font-sans">
+      <body className="font-sans antialiased">
         <SmoothScroll>
           <ScrollProgress />
           {children}
